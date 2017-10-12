@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { SERVICE_URL_HEROKU } from '../constants';
+import { SERVICE_URL_LOCAL } from '../constants';
 
-const SERVICE_URL = SERVICE_URL_HEROKU;
+const SERVICE_URL = SERVICE_URL_LOCAL;
 
 const validateStatus = status => (response) => {
   if (response.status !== status) {
