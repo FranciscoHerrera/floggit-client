@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import whiteboardProps from './Whiteboard.props';
 
 const Whiteboard = (props) => {
@@ -14,8 +15,8 @@ const Whiteboard = (props) => {
     <div>
     ID: {props.id}
     Name: {props.name}
-      <button type="button" onClick={handleJoin}> JOIN </button>
-      <button type="button" onClick={handleDelete}> REMOVE </button>
+      <NavLink to="/home" onClick={handleJoin}> JOIN </NavLink>
+      <NavLink to="/" onClick={handleDelete}> REMOVE </NavLink>
     </div>);
 };
 
