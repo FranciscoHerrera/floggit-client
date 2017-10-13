@@ -7,8 +7,8 @@ const Start = () => (
   <div className="HomeContainer">
     <header>
       <div className="logo" /><h1>Flogg<strong>IT</strong></h1>
-      <WhiteboardsContainer />
     </header>
+    <WhiteboardsContainer />
   </div>
 );
 

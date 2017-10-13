@@ -1,6 +1,6 @@
 import React from 'react';
 import whiteboardsWrapperProps from './WhiteboardsWrapper.props';
-// import { addWhiteboard } from '../../../reduxStore/config/whiteboards';
+import WhiteboardList from './components/WhiteboardList';
 
 const WhiteboardsWrapper = (props) => {
   let inputText;
@@ -25,6 +25,14 @@ const WhiteboardsWrapper = (props) => {
         onClick={handleAddWhiteboard}
       > Create a Whiteboard
       </button>
+
+      <br />
+      <br />
+      <WhiteboardList
+        whiteboards={props.whiteboards}
+        handleJoinWhiteboard={props.handleChangeWhiteboard}
+        handleDeleteWhiteboard={() => {}}
+      />
     </div>);
 };
 

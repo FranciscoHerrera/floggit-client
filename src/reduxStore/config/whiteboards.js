@@ -1,27 +1,38 @@
 import whiteboardsAPI from '../../utils/repository/whiteboardsAPI';
 
-const WB_ADD = 'WB_ADD';
+const WB_CHANGE = 'WB_CHANGE';
+const WB_LOAD = 'WB_LOAD';
 
 const initialState = {
+  whiteboards: [],
   id: null,
   name: null,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case WB_ADD: {
+    case WB_CHANGE: {
       return Object.assign({}, state, { name: action.data.name, id: action.data.id });
+    }
+    case WB_LOAD: {
+      return Object.assign({}, state, { whiteboards: action.data.values });
     }
     default: return state;
   }
 };
 
-
-const internalAddWhiteboard = value => ({
-  type: WB_ADD,
+const internalLoadWhiteboards = whiteboards => ({
+  type: WB_LOAD,
   data: {
-    id: value.id,
-    name: value.name,
+    values: whiteboards,
+  },
+});
+
+const changeWhiteboard = whiteboard => ({
+  type: WB_CHANGE,
+  data: {
+    id: whiteboard.id,
+    name: whiteboard.name,
   },
 });
 
@@ -31,8 +42,13 @@ const addWhiteboard = value => dispatch => whiteboardsAPI.add(value)
       name: value,
       id,
     };
-    dispatch(internalAddWhiteboard(wb));
+    dispatch(changeWhiteboard(wb));
   });
 
-export { addWhiteboard };
+const loadWhiteboards = () => dispatch => whiteboardsAPI.getAll()
+  .then((whiteboards) => {
+    dispatch(internalLoadWhiteboards(whiteboards));
+  });
+
+export { changeWhiteboard, addWhiteboard, loadWhiteboards };
 export default reducer;

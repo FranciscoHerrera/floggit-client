@@ -10,6 +10,15 @@ const validateStatus = status => (response) => {
   return response;
 };
 
+const getAll = () => axios.get(`${SERVICE_URL}/v1/whiteboards`)
+  .then(validateStatus(200))
+  .then(response => response.data.whiteboards.map(item => ({
+    // eslint-disable-next-line no-underscore-dangle
+    id: item._id,
+    name: item.name,
+  })))
+  .catch(err => err.message);
+
 const add = name =>
   axios({
     headers: {
@@ -29,6 +38,7 @@ const remove = id => axios.delete(`${SERVICE_URL}/v1/whiteboards/${id}`)
   .catch(err => err.message);
 
 const publicAPI = {
+  getAll,
   add,
   remove,
 };
