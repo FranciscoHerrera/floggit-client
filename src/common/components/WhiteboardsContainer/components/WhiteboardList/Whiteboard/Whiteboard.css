@@ -1,0 +1,19 @@
+.wb-container {
+  margin: var(--space-default);
+  margin-left: 0;
+  padding: var(--space-default);
+  border: 1px solid var(--color-gray-dark);
+  display: flex;
+  justify-content: space-between;
+  max-width: 50%;
+}
+
+.wb-btn-delete {
+  font-weight: bold;
+  color: var(--color-note-danger);
+}
+
+.name {
+  margin-right: 20px;
+  text-transform: uppercase;
+}

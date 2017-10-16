@@ -9,12 +9,14 @@ const NOTEFORM_ADD_INFOITEM = 'NOTEFORM_ADD_INFOITEM';
 const NOTEFORM_REMOVE_INFOITEM = 'NOTEFORM_REMOVE_INFOITEM';
 const NOTEFORM_RESET = 'NOTEFORM_RESET';
 const NOTEFORM_OPEN = 'NOTEFORM_OPEN';
+const NOTEFORM_SET_WHITEBOARD = 'NOTEFORM_SET_WHITEBOARD';
 
 const initialState = {
   id: null,
   title: '',
   color: 'DEFAULT',
   information: [],
+  whiteboardId: '',
   activeForm: false,
 };
 
@@ -43,6 +45,9 @@ const reducer = (state = initialState, action) => {
     }
     case NOTEFORM_OPEN: {
       return Object.assign({}, initialState, { activeForm: true });
+    }
+    case NOTEFORM_SET_WHITEBOARD: {
+      return Object.assign({}, state, { whiteboardId: action.id });
     }
     default:
       return state;
@@ -86,6 +91,11 @@ const openForm = () => ({
   type: NOTEFORM_OPEN,
 });
 
+const setWhiteboard = id => ({
+  type: NOTEFORM_SET_WHITEBOARD,
+  id,
+});
+
 const saveNote = () => (dispatch, getState) => {
   if (!getState().noteForm.id) {
     dispatch(
@@ -111,5 +121,6 @@ export {
   addInfoItem,
   removeInfoItem,
   saveNote,
+  setWhiteboard,
 };
 export default reducer;

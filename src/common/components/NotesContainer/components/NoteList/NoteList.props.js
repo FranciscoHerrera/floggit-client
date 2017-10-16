@@ -14,6 +14,7 @@ const props = {
   activeForm: PropTypes.bool.isRequired,
   onRemoveNote: PropTypes.func.isRequired,
   onUpdateNote: PropTypes.func.isRequired,
+  whiteboardId: PropTypes.string.isRequired,
 };
 
 export default props;

@@ -7,8 +7,9 @@ import './NoteList.css';
 const NoteList = props => (
   <ul className="NoteList">
     {props.activeForm && !props.noteFormId ?
-      <li><NoteFormContainer /></li> : '' }
+      <li><NoteFormContainer whiteboardId={props.whiteboardId} /></li> : '' }
     {props.notes.filter(note => (note.display))
+      .filter(note => (note.whiteboardId === props.whiteboardId))
       .map(note => (
         <li key={note.id}>
           {props.activeForm && note.id === props.noteFormId ?

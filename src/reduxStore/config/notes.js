@@ -8,6 +8,7 @@ const NOTES_LIST_REPLACE = 'NOTES_LIST_REPLACE';
 const NOTES_LOADING = 'NOTES_LOADING';
 const NOTES_LOADED = 'NOTES_LOADED';
 const NOTES_FILTER = 'NOTES_FILTER';
+const NOTES_REMOVE_ALL = 'NOTES_REMOVE_ALL';
 
 const initialState = {
   data: [],
@@ -28,7 +29,9 @@ const reducer = (state = initialState, action) => {
     case NOTE_UPDATE: {
       const newNotes = state.data.map((note) => {
         if (note.id === action.data.id) {
-          return action.data;
+          const newNote = action.data;
+          newNote.whiteboardId = note.whiteboardId;
+          return newNote;
         }
         return note;
       });
@@ -59,6 +62,11 @@ const reducer = (state = initialState, action) => {
       });
       return Object.assign({}, state, { data: newData });
     }
+    case NOTES_REMOVE_ALL: {
+      // would like to remove notes from DB somehow...
+      const newNotes = state.data.filter(note => note.whiteboardId !== action.whiteboardId);
+      return Object.assign({}, state, { data: newNotes });
+    }
     default:
       return state;
   }
@@ -72,6 +80,7 @@ const internalAddNote = value => ({
     title: value.title,
     color: value.color,
     information: value.information,
+    whiteboardId: value.whiteboardId,
     display: true,
   },
 });
@@ -116,7 +125,7 @@ const filterNotes = value => ({
 // THUNK
 const addNote = value => (dispatch) => {
   dispatch(internalLoadingNotes());
-  return notesAPI.add(value.title, value.color, value.information)
+  return notesAPI.add(value.title, value.color, value.information, value.whiteboardId)
     .then((id) => {
       const newValue = value;
       newValue.id = id;
@@ -155,5 +164,10 @@ const loadNotes = () => (dispatch) => {
     });
 };
 
-export { addNote, removeNote, updateNote, loadNotes, filterNotes };
+const removeAll = whiteboardId => ({
+  type: NOTES_REMOVE_ALL,
+  whiteboardId,
+});
+
+export { addNote, removeNote, updateNote, loadNotes, filterNotes, removeAll };
 export default reducer;

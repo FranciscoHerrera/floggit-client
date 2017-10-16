@@ -12,6 +12,7 @@ const propTypes = {
   })),
   handleRemoveNote: PropTypes.func.isRequired,
   handleUpdateNote: PropTypes.func.isRequired,
+  whiteboardId: PropTypes.string.isRequired,
 };
 
 export default propTypes;

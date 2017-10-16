@@ -7,6 +7,7 @@ import { NOTE_COLORS } from '../../../../../utils/constants';
 
 const NoteForm = (props) => {
   let infoItemInput;
+  props.onSetWhiteboard(props.whiteboardId);
 
   const handleChangeTitle = (event) => {
     props.onTitleUpdate(event.target.value);

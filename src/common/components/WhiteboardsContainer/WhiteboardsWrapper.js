@@ -1,6 +1,7 @@
 import React from 'react';
 import whiteboardsWrapperProps from './WhiteboardsWrapper.props';
 import WhiteboardList from './components/WhiteboardList';
+import './WhiteboardsWrapper.css';
 
 const WhiteboardsWrapper = (props) => {
   let inputText;
@@ -13,7 +14,11 @@ const WhiteboardsWrapper = (props) => {
     props.handleCreateWhiteboard(inputText);
   };
 
-  return (
+  const handleAddBtnClicked = () => {
+    props.handleAddBtnClicked();
+  };
+
+  const showForm = () => (
     <div>
       <input
         type="text"
@@ -25,13 +30,24 @@ const WhiteboardsWrapper = (props) => {
         onClick={handleAddWhiteboard}
       > Create a Whiteboard
       </button>
+    </div>
+  );
 
-      <br />
-      <br />
+  const showAddBtn = () => (
+    <button
+      type="button"
+      onClick={handleAddBtnClicked}
+    > Add Whiteboard
+    </button>
+  );
+
+  return (
+    <div className="WhiteboardContainer-wrapper">
+      {props.displayForm ? showForm() : showAddBtn()}
       <WhiteboardList
         whiteboards={props.whiteboards}
         handleJoinWhiteboard={props.handleChangeWhiteboard}
-        handleDeleteWhiteboard={() => {}}
+        handleDeleteWhiteboard={props.handleDeleteWhiteboard}
       />
     </div>);
 };

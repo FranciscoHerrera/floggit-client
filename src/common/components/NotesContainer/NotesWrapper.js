@@ -25,14 +25,15 @@ const NotesWrapper = (props) => {
     props.handleFilter('');
   };
 
-  const renderSearchMessage = (notes) => {
+  const renderSearchMessage = (notes, whiteboardId) => {
     const notDisplayed = notes.filter(note => !note.display);
-    const displayed = notes.filter(note => note.display);
+    const displayed = notes.filter(note => note.display)
+      .filter(note => note.whiteboardId === whiteboardId);
     return notDisplayed.length > 0 ? (<div className="search-message">
     Search matched
       <strong>{displayed.length}</strong>
     of
-      <strong>{notes.length}</strong>
+      <strong>{notes.filter(note => note.whiteboardId === whiteboardId).length}</strong>
     notes
     </div>) : '';
   };
@@ -67,7 +68,7 @@ const NotesWrapper = (props) => {
             <i className="fa fa-times-circle" />
           </span>
         </div>
-        {renderSearchMessage(props.notes)}
+        {renderSearchMessage(props.notes, props.whiteboardId)}
         {props.notesLoading ?
           <div className="load-spinner">
             <i className="fa fa-cog fa-spin fa-2x fa-fw" />
@@ -81,6 +82,7 @@ const NotesWrapper = (props) => {
         activeForm={props.noteForm.activeForm}
         onRemoveNote={props.handleRemoveNote}
         onUpdateNote={props.handleUpdateNote}
+        whiteboardId={props.whiteboardId}
       />
     </div>
   );

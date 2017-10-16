@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import NoteForm from './NoteForm';
-import { updateTitle, updateColor, addInfoItem, removeInfoItem, saveNote, closeForm } from '../../../../../reduxStore/config/note-form';
+import { updateTitle, updateColor, addInfoItem, removeInfoItem, saveNote, closeForm, setWhiteboard } from '../../../../../reduxStore/config/note-form';
 
 const mapStateToProps = state => ({
   id: state.noteForm.id,
@@ -30,6 +30,9 @@ const mapDispatchToProps = dispatch => ({
   },
   onCloseForm: () => {
     dispatch(closeForm());
+  },
+  onSetWhiteboard: (whiteboardId) => {
+    dispatch(setWhiteboard(whiteboardId));
   },
 });
 

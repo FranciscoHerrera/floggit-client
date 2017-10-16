@@ -23,10 +23,11 @@ const getAll = () => axios.get(`${SERVICE_URL}/v1/notes`)
     title: item.title,
     color: item.color,
     information: item.information,
+    whiteboardId: item.whiteboardId,
   })))
   .catch(err => err.message);
 
-const add = (title, color, information) =>
+const add = (title, color, information, whiteboardId) =>
   axios({
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ const add = (title, color, information) =>
     },
     method: 'POST',
     url: `${SERVICE_URL}/v1/notes`,
-    data: JSON.stringify({ title, color, information }),
+    data: JSON.stringify({ title, color, information, whiteboardId }),
   })
     .then(validateStatus(201))
     .then(response => response.data.id)
