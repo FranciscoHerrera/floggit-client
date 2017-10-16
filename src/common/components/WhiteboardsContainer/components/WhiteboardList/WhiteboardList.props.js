@@ -5,7 +5,6 @@ const propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   })),
-  handleJoinWhiteboard: PropTypes.func,
   handleDeleteWhiteboard: PropTypes.func,
 };
 

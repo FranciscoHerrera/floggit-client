@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import WhiteboardsWrapper from './WhiteboardsWrapper';
 
-import { addWhiteboard, loadWhiteboards, changeWhiteboard, deleteWhiteboard, showAddForm, hideAddForm } from '../../../reduxStore/config/whiteboards';
+import { addWhiteboard, loadWhiteboards, deleteWhiteboard, showAddForm, hideAddForm } from '../../../reduxStore/config/whiteboards';
 
 const mapStateToProps = state => ({
   whiteboards: state.whiteboards.whiteboards,
@@ -15,9 +15,6 @@ const mapDispatchToProps = dispatch => ({
   },
   handleLoadWhiteboards: () => {
     dispatch(loadWhiteboards);
-  },
-  handleChangeWhiteboard: (whiteboard) => {
-    dispatch(changeWhiteboard(whiteboard));
   },
   handleDeleteWhiteboard: (id) => {
     dispatch(deleteWhiteboard(id));

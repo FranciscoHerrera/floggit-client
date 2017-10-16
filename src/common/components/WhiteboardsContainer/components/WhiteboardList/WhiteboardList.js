@@ -9,7 +9,6 @@ const WhiteboardList = props => (
         <Whiteboard
           id={wb.id}
           name={wb.name}
-          handleJoinWhiteboard={props.handleJoinWhiteboard}
           handleDeleteWhiteboard={props.handleDeleteWhiteboard}
         /> </li>))}
   </ul>);

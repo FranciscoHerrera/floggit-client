@@ -1,7 +1,6 @@
 import whiteboardsAPI from '../../utils/repository/whiteboardsAPI';
 import { removeAll } from './notes';
 
-const WB_CHANGE = 'WB_CHANGE';
 const WB_LOAD = 'WB_LOAD';
 const WB_DELETE = 'WB_DELETE';
 const WB_SHOW_ADD_FORM = 'WB_SHOW_ADD_FORM';
@@ -14,9 +13,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case WB_CHANGE: {
-      return Object.assign({}, state, { name: action.data.name, id: action.data.id });
-    }
     case WB_LOAD: {
       return Object.assign({}, state, { whiteboards: action.data.values });
     }
@@ -46,14 +42,6 @@ const internalDeleteWhiteboard = id => ({
   id,
 });
 
-const changeWhiteboard = whiteboard => ({
-  type: WB_CHANGE,
-  data: {
-    id: whiteboard.id,
-    name: whiteboard.name,
-  },
-});
-
 const showAddForm = () => ({
   type: WB_SHOW_ADD_FORM,
 });
@@ -68,12 +56,7 @@ const loadWhiteboards = () => dispatch => whiteboardsAPI.getAll()
   });
 
 const addWhiteboard = value => dispatch => whiteboardsAPI.add(value)
-  .then((id) => {
-    const wb = {
-      name: value,
-      id,
-    };
-    dispatch(changeWhiteboard(wb));
+  .then(() => {
     dispatch(loadWhiteboards());
   });
 
@@ -84,7 +67,6 @@ const deleteWhiteboard = id => dispatch => whiteboardsAPI.remove(id)
   });
 
 export {
-  changeWhiteboard,
   addWhiteboard,
   loadWhiteboards,
   deleteWhiteboard,

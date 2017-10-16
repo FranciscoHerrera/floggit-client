@@ -8,13 +8,9 @@ const Whiteboard = (props) => {
     props.handleDeleteWhiteboard(props.id);
   };
 
-  const handleJoin = () => {
-    props.handleJoinWhiteboard({ id: props.id, name: props.name });
-  };
-
   return (
     <div className="wb-container">
-      <NavLink className="name" to={`/whiteboard/${props.id}`} onClick={handleJoin}> {props.name} </NavLink>
+      <NavLink className="name" to={`/whiteboard/${props.id}`}> {props.name} </NavLink>
       <NavLink className="wb-btn-delete" to="/" onClick={handleDelete}> X </NavLink>
     </div>);
 };

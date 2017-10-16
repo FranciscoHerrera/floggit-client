@@ -56,7 +56,6 @@ const WhiteboardsWrapper = (props) => {
       {props.displayForm ? showForm() : showAddBtn()}
       <WhiteboardList
         whiteboards={props.whiteboards}
-        handleJoinWhiteboard={props.handleChangeWhiteboard}
         handleDeleteWhiteboard={props.handleDeleteWhiteboard}
       />
     </div>);
