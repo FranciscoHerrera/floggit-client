@@ -18,8 +18,12 @@ const WhiteboardsWrapper = (props) => {
     props.handleAddBtnClicked();
   };
 
+  const handleLeaveForm = () => {
+    props.handleLeaveForm();
+  };
+
   const showForm = () => (
-    <div>
+    <div className="WhiteboardContainer-create-form">
       <input
         type="text"
         placeholder="Name"
@@ -28,7 +32,13 @@ const WhiteboardsWrapper = (props) => {
       <button
         type="button"
         onClick={handleAddWhiteboard}
-      > Create a Whiteboard
+        className="WhiteboardContainer-btn-create"
+      > Create Whiteboard
+      </button>
+      <button
+        type="button"
+        onClick={handleLeaveForm}
+      > X
       </button>
     </div>
   );

@@ -25,6 +25,9 @@ const mapDispatchToProps = dispatch => ({
   handleAddBtnClicked: () => {
     dispatch(showAddForm());
   },
+  handleLeaveForm: () => {
+    dispatch(hideAddForm());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WhiteboardsWrapper);

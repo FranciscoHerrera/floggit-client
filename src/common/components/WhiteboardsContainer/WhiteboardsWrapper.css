@@ -1,3 +1,11 @@
 .WhiteboardContainer-wrapper {
   padding: var(--space-default);
 }
+
+.WhiteboardContainer-create-form {
+  display: flex;
+}
+
+.WhiteboardContainer-btn-create {
+  margin-left: var(--space-default);
+}
